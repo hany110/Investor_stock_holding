@@ -1,0 +1,101 @@
+<div class="jumbotron">
+</div>
+
+<table class="table-responsive table-striped table-condensed table-bordered">
+<thead>
+  <th>Filer</th>
+  <th>City</th>
+  <th>State</th>
+  <th>Shares Held</th>
+  <th>Market Value </th>
+  <th>% of Portfolio</th>
+  <th>Prior % of Portfolio</th>
+  <th>Ranking</th>
+  <th>Prior Ranking</th>
+  <th>Change in Shares</th>
+  <th>Filer State</th>
+  <th>% ownership</th>
+  <th>source_date</th>
+  <th>filing_date</th>
+</thead>
+<tbody>
+  <tr *ngFor="let filer of filers | paginate: {itemsPerPage: 5, currentPage:page, id: '1'}">
+      <td>{{filer.Filer_Name}}</td>
+      <td>{{filer.City}}</td>
+      <td>{{filer.State}}</td>
+      <td>{{filer.Shares_Held}}</td>
+      <td>{{filer.Market_Value }}</td>
+      <td>{{filer.per_of_Portfolio}}</td>
+      <td>{{filer.Prior_per_of_Portfolio}}</td>
+      <td>{{filer.Ranking}}</td>
+      <td>{{filer.Prior_Ranking}}</td>
+      <td>{{filer.Change_in_Shares}}</td>
+      <td>{{filer.Filer_State}}</td>
+      <td>{{filer.per_Ownership}}</td>
+      <td>{{filer.source_date}}</td>
+      <td>{{filer.filing_date}}</td>    
+  </tr>
+  
+  </tbody>
+</table>
+<pagination-controls (pageChange)="page = $event" id="1"
+                      maxSize="5"
+                      directionLinks="true"
+                      autoHide="true">
+                </pagination-controls>
+       
+ <div><div #chart></div></div>
+
+<div class="jumbotron">
+  <app-compCharts></app-compCharts>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="row">
+    <div class="col-1" >Filer </div>
+    <div class="col-1">
+      <div class="row">
+        <div class="col-6" > City</div>
+        <div class="col-6" > State</div>
+      </div>
+    </div>
+    <div class="col-1" >Shares Held </div>
+    <div class="col-1" >Market Value </div>
+    <div class="col-1" >% of Portfolio</div>
+    <div class="col-1" >Prior % of Portfolio </div>
+    <div class="col-1">
+        <div class="row">
+          <div class="col-6" >Rank ing </div>
+          <div class="col-6"> Prior Rank ing</div>
+        </div>
+      </div>
+    <div class="col-1"> Change in   shares</div>
+    <div class="col-1"> Filer State</div>
+    <div class="col-1" >% ownership </div>
+    <div class="col-1" > source_date</div>
+    <div class="col-1">filing_date </div>
+    
+</div>
+<div class="col-12">
+    <div class="list-group">
+      <app-filer 
+      *ngFor="let filer of itemList" 
+      [data]="filer" 
+      ></app-filer> 
+    </div>
+  </div>
+-->
