@@ -1,12 +1,73 @@
-<nav class="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="500">
-        <div class="container">
-            <div class="navbar-translate">
-                <a class="navbar-brand" href="https://www.creative-tim.com">Stock Analyser</a>
-                <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
-                    <span class="navbar-toggler-bar"></span>
-                    <span class="navbar-toggler-bar"></span>
-                    <span class="navbar-toggler-bar"></span>
-                </button>
-            </div>
+<nav class="navbar navbar-expand-sm fixed-top navbar-transparent" color-on-scroll="500">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand">
+                    <ul class="navbar-nav">
+            <li class="nav-item">
+                    <div ngbDropdown class="d-inline-block dropdown">
+                        <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Investors</a>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-primary">
+                            <a class="dropdown-item" routerLink="scoreboard">ScoreBoard</a>
+                            <a class="dropdown-item">Investor Portfolio</a>
+                            <a class="dropdown-item">Something else is here</a>
+                        </div>
+                    </div>
+                </li>
+                </ul>
+            </a>
+            <a class="navbar-brand">
+                    <ul class="navbar-nav">
+            <li class="nav-item">
+                    <div ngbDropdown class="d-inline-block dropdown">
+                        <a class="nav-link" id="dropdownBasic1"  ngbDropdownToggle>Companies</a>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-primary">
+                            <a class="dropdown-item" routerLink="hotpicks">Hot Picks</a>
+                            <a class="dropdown-item">Consensus Picks</a>
+                        </div>
+                    </div>
+                </li>
+                </ul>
+            </a>
+            <a class="navbar-brand">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                                <div class="d-inline-block">
+                                    <a class="nav-link" id="dropdownBasic1" routerLink="heatComp"><i class="fa fa-line-chart"></i>Sector Trends</a>
+                                </div>
+                            </li>
+                </ul>
+            </a>
+            <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
+                <span class="navbar-toggler-bar"></span>
+                <span class="navbar-toggler-bar"></span>
+                <span class="navbar-toggler-bar"></span>
+            </button>
+            
         </div>
-    </nav>
+        <a class="navbar-brand">
+                
+                <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#pk"><i class="nc-icon nc-email-85" aria-hidden="true"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#pk"><i class="nc-icon nc-single-02" aria-hidden="true"></i></a>
+                            </li>
+                            <li class="nav-item ">
+                                <div ngbDropdown class="dropdown">
+                                <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle><i class="nc-icon nc-settings-gear-65" aria-hidden="true"></i></a>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-danger dropdown-menu-right">
+                                        <a class="dropdown-item">Action - 1</a>
+                                        <a class="dropdown-item">Another Action</a>
+                                        <a class="dropdown-item">Something else is here</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item">Separated link</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </a>
+    </div>
+</nav>
+           
+        

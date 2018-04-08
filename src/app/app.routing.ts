@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
@@ -9,14 +9,23 @@ import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 import { CompanyComponent } from './company/company.component';
+import { HotpicksComponent } from './hotpicks/hotpicks.component';
+import { HeatCompanyComponent } from './heat-company/heat-company.component';
+import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { InvestorComponent } from './investor/investor.component';
+
 
 const routes: Routes =[
     { path: 'home',             component: HomeComponent },
     { path: 'company',          component: CompanyComponent },
+    { path: 'investor',         component:InvestorComponent},
     { path: 'user-profile',     component: ProfileComponent },
     { path: 'signup',           component: SignupComponent },
     { path: 'landing',          component: LandingComponent },
     { path: 'nucleoicons',      component: NucleoiconsComponent },
+    { path: 'hotpicks',         component: HotpicksComponent},
+    { path: 'scoreboard',       component: ScoreboardComponent},
+    { path: 'heatComp',         component:HeatCompanyComponent},
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

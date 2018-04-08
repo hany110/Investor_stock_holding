@@ -1,0 +1,57 @@
+<br/><br/><br/><br/><br/><br/>
+<div class="container">
+  <div class="jumbotron">
+    Some info about what is hot picks and cold picks
+  </div>
+  <div>
+    <div class="row">
+      <div class="col-6">
+        <div class="jumbotron">
+            <button type="button" class="btn btn-outline-success btn-round" (click)="tohot()">Hot Buys</button>
+        </div>
+      </div>
+      <div class="col-6">
+          <div class="jumbotron">
+            <button type="button" class="btn btn-outline-danger btn-round" (click)="tocold()">Cold Sells</button>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div><h3>Company List</h3></div><br/>
+  <table class="table-responsive table-striped table-condensed table-bordered" width="100%">
+  <thead>
+    <th>Company Name</th>
+    <th>Ticker</th>
+    <th>Sector</th>
+    <th># of owners</th>
+    <th>Market Value</th>
+    <th>Shares held</th>
+    <th>Change in Shares</th>
+    <th>Largest Holder</th>
+  </thead>
+  <tbody *ngIf="check" >
+      <tr  *ngFor="let buy of hotbuys">
+       <td ><a (click)="loadCompany(buy.companyID)">111111111{{buy.companyName}}</a></td>
+        <td>{{buy.ticker}}</td>
+        <td>{{buy.sector}}</td>
+        <td>{{buy.numFilers}}</td>
+        <td>{{buy.marketValue}}</td>
+        <td>{{buy.principalAmount}}</td>
+        <td>{{buy.changeInShares}}</td>
+        <td>{{buy.largestHolder}}</td>
+        </tr>
+  </tbody>
+  <tbody *ngIf="!check">
+        <tr  *ngFor="let sell of coldsells">
+            <td><a (click)="loadCompany(sell.companyID)">{{sell.companyName}}</a></td>
+            <td>{{sell.ticker}}</td>
+            <td>{{sell.sector}}</td>
+            <td>{{sell.numFilers}}</td>
+            <td>{{sell.marketValue}}</td>
+            <td>{{sell.principalAmount}}</td>
+            <td>{{sell.changeInShares}}</td>
+            <td>{{sell.largestHolder}}</td>
+        </tr>
+  </tbody> 
+  </table>
+</div>

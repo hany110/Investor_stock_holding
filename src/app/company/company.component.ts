@@ -5,58 +5,32 @@ import { ChartModule }            from 'highcharts';
 import Highcharts = require('highcharts');
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { FilerService } from '../shared/service/company.service';
+import { ConnectService } from '../shared/service/connect.service';
+import { LoaderService } from '../shared/service/load.service';
 
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
   styleUrls: ['./company.component.css']
 })
-export class CompanyComponent implements OnInit, AfterViewInit, OnDestroy {
-  @Input()filers:Filer[]=mock;
-  @ViewChild('chart') public chartEl: ElementRef;
-  private _chart: any;
-
-  constructor(private companyservice : FilerService) {
-    console.log(this.companyservice.getSharesHeld());
-    
+export class CompanyComponent implements OnInit, OnDestroy {
+  @Input()abc:Filer[]=mock;
+  companyID:string;
+  constructor(private companyservice : FilerService,private conn:ConnectService,private load:LoaderService) {
+    this.companyID=load.getCompanyID();
   } 
-
+  private filers=[];
   ngOnInit() {
-  
+    this.companyID='pusheen';
+    this.companyservice.getCompanyDetails(this.companyID).subscribe((data) =>
+    {
+        console.log(data);
+    });
+    this.companyservice.getFilerForComp(this.companyID).subscribe((data) => 
+        {
+         this.filers.push(data);
+         });
   }
-  
-  ngAfterViewInit() {
-    let opts: any = {
-      title : { text : 'I did it !!!' },
-      xAxis: {
-        categories:this.companyservice.getInvestor(),
-        tickPixelInterval: 150,
-        title: {
-          text: 'Investor'
-               }
-    },    
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'Sharesheld'
-        }
-    }, 
-      series:[{
-          name : 'shares',
-          data : this.companyservice.getSharesHeld()
-      }]
-  };
-  
-  if (this.chartEl && this.chartEl.nativeElement) {
-      opts.chart = {
-          type: 'spline',
-          renderTo: this.chartEl.nativeElement
-      };
-      
-      this._chart = new Highcharts.Chart(opts);
-  }
-  
-}
   
 
 ngOnDestroy() {

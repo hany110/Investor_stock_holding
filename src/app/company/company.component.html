@@ -1,6 +1,39 @@
-<div class="jumbotron">
-</div>
-
+<div class="container">
+  <br/><br/><br/><br/><br/><br/><br/>
+    <div class="section" id="carousel">
+        <div class="container">
+            <div class="tim-title">
+                <h3>Carousel</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mr-auto ml-auto">
+                    <div class="card page-carousel">
+                        <ngb-carousel>
+                            <ng-template ngbSlide>
+                                <img src="../assets/img/soroush-karimi.jpg" alt="Random first slide">
+                                <div class="carousel-caption">
+                                    <p>Somewhere</p>
+                                </div>
+                            </ng-template>
+                            <ng-template ngbSlide>
+                                <img src="../assets/img/federico-beccari.jpg" alt="Random second slide">
+                                <div class="carousel-caption">
+                                    <p>Somewhere else</p>
+                                </div>
+                            </ng-template>
+                            <ng-template ngbSlide>
+                                <img src="../assets/img/joshua-stannard.jpg" alt="Random third slide">
+                                <div class="carousel-caption">
+                                    <p>Here it is</p>
+                                </div>
+                            </ng-template>
+                        </ngb-carousel>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div><h3>List of Filers</h3></div><br/>
 <table class="table-responsive table-striped table-condensed table-bordered">
 <thead>
   <th>Filer</th>
@@ -44,12 +77,38 @@
                       autoHide="true">
                 </pagination-controls>
        
- <div><div #chart></div></div>
+ 
+ <div class="row">
+    <div class="col-md-12">
+        <div class="tim-title bg-dark">
+            <h3>Trends</h3>
+        </div>
 
-<div class="jumbotron">
-  <app-compCharts></app-compCharts>
+        <div class="nav-tabs-navigation">
+            <div class="nav-tabs-wrapper">
+                <ngb-tabset [justify]="'center'">
+                    <ngb-tab title="Market Value">
+                        <ng-template ngbTabContent>
+                            <p>Larger, yet dramatically thinner. More powerful, but remarkably power efficient. With a smooth metal surface that seamlessly meets the new Retina HD display.</p>
+                            <app-market></app-market>
+                          </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Investor changes">
+                        <ng-template ngbTabContent>
+                            <p>Here is your profile.</p>
+                            <div class="jumbotron">
+                                <app-compCharts [compName]='compName'></app-compCharts>
+                              </div>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+            </div>
+        </div>
+
+    </div>
+
+
 </div>
-
 
 
 
