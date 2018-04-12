@@ -15,12 +15,12 @@ export class MarklineComponent implements OnInit {
   private _chart: any;
   @Input()investID:string;
   check:boolean=true;
-  sectornames=[];
-  sectorvalues=[];
+  quarter=[];
+  sumMarketValues=[];
   constructor(private companyservice :FilerService,public cd: ChangeDetectorRef) { 
-    this.companyservice.getSectorForInvestor(this.investID).subscribe((data) => {
-      this.sectornames.push(data['name']);
-      this.sectorvalues.push(data['y']);
+    this.companyservice.getMarketForInvestor(this.investID).subscribe((data) => {
+      this.quarter.push("Q"+data['name']+" 2017-18");    //data['quarter'] 
+      this.sumMarketValues.push(data['y']);               //data['sumMarketValue']
   });
   }
 
@@ -29,9 +29,9 @@ export class MarklineComponent implements OnInit {
   loadinggraph()
   {
     let opts:any={
-      title : { text : 'I did it !!!' },
+      title : { text : ' ' },
       xAxis: {
-        categories:this.sectornames,
+        categories:this.quarter,
         tickPixelInterval: 150,
         title: {
           text: 'Investor'
@@ -40,12 +40,12 @@ export class MarklineComponent implements OnInit {
     yAxis: {
         min: 0,
         title: {
-            text: 'Sharesheld'
+            text: 'Market Value'
         }
     }, 
       series:[{
-          name : 'shares',
-          data : this.sectorvalues
+          name : 'Market Value',
+          data : this.sumMarketValues
       }]
 
     };

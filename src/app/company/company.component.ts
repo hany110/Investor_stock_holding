@@ -14,9 +14,14 @@ import { LoaderService } from '../shared/service/load.service';
   styleUrls: ['./company.component.css']
 })
 export class CompanyComponent implements OnInit, OnDestroy {
+
+  allquarters:string[]=["Q 4 2017-18","Q 3 2017-18","Q 2 2017-18","Q 1 2017-18"];
+  selectedQuarter = 'Q 4 2017-18';
+
   @Input()abc:Filer[]=mock;
   companyID:string;
-  companyDetails:string;
+  companyDetails=[];
+  investDetails=[];
   constructor(private companyservice : FilerService,private conn:ConnectService,private load:LoaderService) {
     this.companyID=load.getCompanyID();
   } 
@@ -25,14 +30,26 @@ export class CompanyComponent implements OnInit, OnDestroy {
     this.companyservice.getCompanyDetails(this.companyID).subscribe((data) =>
     {
         this.companyDetails=data;
-        console.log(data);
+       
     });
-    this.companyservice.getFilerForComp(this.companyID).subscribe((data) => 
+    this.companyservice.getFilerForComp(this.selectedQuarter.split(" ")[1],this.companyID).subscribe((data) => 
         {
          this.filers.push(data);
          });
   }
   
+  onChange(quarter)
+  {
+      console.log(quarter);
+      this.selectedQuarter = quarter;
+      console.log(this.selectedQuarter.split(" ")[1]);
+      this.companyservice.getFilerForComp(this.selectedQuarter.split(" ")[1],this.companyID).subscribe((data)=> //changes table content when quarter is filtered
+      {
+      
+      }
+    );
+  }
+
 
 ngOnDestroy() {
     

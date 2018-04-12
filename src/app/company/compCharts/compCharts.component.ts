@@ -12,22 +12,21 @@ import Highcharts = require('highcharts');
 })
 export class compChartsComponent implements OnInit,OnDestroy,AfterViewInit {
   @ViewChild('changeinshare') public chartEl: ElementRef;
-  @Input()compName:string;
+  @Input()companyID:string;
   private _chart: any;
   private currfilers=[];
-  private currshares=[];
-  private currsharescopy=[];
-  private pastshares=[];
+  private Q1=[];
+  private Q2=[];
+  private Q3=[];
+  private Q4=[];
   private check:boolean=true;
   constructor(private companyservice :FilerService,public cd: ChangeDetectorRef,private zone:NgZone) { 
-    this.companyservice.getFilerForComp(this.compName).subscribe((data) => {
-
-      this.currfilers.push(data['Filer_Name']);
-      this.currshares.push(data['Shares_Held']);
-      this.currsharescopy.push(data['Shares_Held']);
-      this.pastshares.push(data['Change_in_shares']);
-      this.cd.detectChanges();
-      
+    this.companyservice.getInvQuarterForCompany(this.companyID).subscribe((data) => {
+      this.currfilers.push(data['investorName']);
+      this.Q1.push(data['q1']);
+      this.Q2.push(data['q2']);
+      this.Q3.push(data['q3']);
+      this.Q4.push(data['q4']);
     });
 
   }
@@ -36,6 +35,7 @@ export class compChartsComponent implements OnInit,OnDestroy,AfterViewInit {
     
   }
  loadinggraph(){
+   console.log(this.Q1);
   let opts: any ={
     chart: {
       type: 'column'
@@ -71,14 +71,22 @@ plotOptions: {
     }
   },
   series: [{
-    name: 'Past quarter',
-    data: this.companyservice.getPreviousShares(this.pastshares,this.currsharescopy)
+    name: 'Q1',
+    data: this.Q1  
     },
     {
-    name: 'Current quarter',
-    data: this.currshares
-    }]
-  };
+      name: 'Q2',
+      data: this.Q2  
+      },
+    {
+        name: 'Q3',
+        data: this.Q3  
+     },
+     {
+      name: 'Q4',
+      data: this.Q4 
+      }
+    ]};
   if (this.chartEl && this.chartEl.nativeElement) {
     opts.chart = {
         type: 'column',

@@ -30,6 +30,7 @@ import { HeatCompanyComponent } from './heat-company/heat-company.component';
 import { InvestorComponent } from './investor/investor.component';
 import { SectpieComponent } from './investor/sectpie/sectpie.component';
 import { MarklineComponent } from './investor/markline/markline.component';
+import { ConsensusComponent } from './consensus/consensus.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { MarklineComponent } from './investor/markline/markline.component';
     HeatCompanyComponent,
     InvestorComponent,
     SectpieComponent,
-    MarklineComponent
+    MarklineComponent,
+    ConsensusComponent
   ],
   imports: [
     Ng2PaginationModule,

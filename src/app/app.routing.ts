@@ -13,6 +13,7 @@ import { HotpicksComponent } from './hotpicks/hotpicks.component';
 import { HeatCompanyComponent } from './heat-company/heat-company.component';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 import { InvestorComponent } from './investor/investor.component';
+import { ConsensusComponent } from './consensus/consensus.component';
 
 
 const routes: Routes =[
@@ -26,6 +27,7 @@ const routes: Routes =[
     { path: 'hotpicks',         component: HotpicksComponent},
     { path: 'scoreboard',       component: ScoreboardComponent},
     { path: 'heatComp',         component:HeatCompanyComponent},
+    { path: 'consensus',        component:ConsensusComponent},
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

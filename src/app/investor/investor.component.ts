@@ -11,14 +11,11 @@ import exportMap=require('highcharts/modules/exporting');
   styleUrls: ['./investor.component.scss']
 })
 export class InvestorComponent implements OnInit {
-
-  allquarters:string[]=["Q4 2017-18","Q3 2017-18","Q2 2017-18","Q1 2017-18"];
-  selectedQuarter = 'Q4 2017-18';
   
-
-
   investID:string;
-  investDetails:string;
+    investName:string;
+  investDetails=[];
+    stocks=[];
   constructor(private companyservice : FilerService,private conn:ConnectService,private load:LoaderService) {
       this.investID=load.getInvestorID();
      
@@ -28,26 +25,17 @@ export class InvestorComponent implements OnInit {
 
       this.companyservice.getInvestorDetails(this.investID).subscribe((data)=>  //brings investor details
         {
+            this.investName=data['name'];
             this.investDetails=data;
+            
         }
       );
 
-      this.companyservice.getCompanyForFilerQuat('Q4',this.investID).subscribe((data)=> //when component is initialised for first time
+      this.companyservice.getCompanyForFiler(this.investID).subscribe((data)=> //when component is initialised for first time
       {
-          this.investDetails=data;
+          console.log("getCompanyForFiler()called");
+         this.stocks.push(data);
       });
   }
-
-  onChange(quarter)
-{
-    console.log(quarter);
-    this.selectedQuarter = quarter;
-    console.log(this.selectedQuarter.split(" ")[0]);
-    this.companyservice.getCompanyForFilerQuat(this.selectedQuarter.split(" ")[0],this.investID).subscribe((data)=> //changes table content when quarter is filtered
-    {
-        this.investDetails=data;
-    }
-  );
-}
 
 }

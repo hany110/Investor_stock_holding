@@ -1,9 +1,7 @@
-import { Component, OnInit, Input, OnDestroy, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-import { Filer } from '../../shared/models/filer.model';
-import { mock } from '../../shared/data/filer.mock';
-import { ChartModule }            from 'highcharts';
+import { Component, OnInit, Input, ChangeDetectorRef, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { ChartModule }  from 'highcharts';
 import Highcharts = require('highcharts');
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import exportMap=require('highcharts/modules/exporting');
 import { FilerService } from '../../shared/service/company.service';
 
 @Component({
@@ -11,57 +9,55 @@ import { FilerService } from '../../shared/service/company.service';
   templateUrl: './market.component.html',
   styleUrls: ['./market.component.scss']
 })
-export class MarketComponent implements OnInit, AfterViewInit, OnDestroy {
-
-  @Input()filers:Filer[]=mock;
-  @ViewChild('chart') public chartEl: ElementRef;
+export class MarketComponent implements OnInit {
+  
+  @ViewChild('containerhello') public chartEl: ElementRef;
   private _chart: any;
-
-  constructor(private companyservice : FilerService) {
-    console.log(this.companyservice.getSharesHeld());
-    
-  } 
+  @Input()companyID:string;
+  check:boolean=true;
+  quarter=[];
+  sumMarketValues=[];
+  constructor(private companyservice :FilerService,public cd: ChangeDetectorRef) { 
+    this.companyservice.getMarketForCompany(this.companyID).subscribe((data) => {
+      this.quarter.push("Q"+data['name']+" 2017-18"); //data['quarter']
+      this.sumMarketValues.push(data['y']);            //data['sumMarketValue']
+  });
+  }
 
   ngOnInit() {
-  
   }
-  
-  ngAfterViewInit() {
-    let opts: any = {
-      title : { text : 'I did it !!!' },
+  loadinggraph()
+  {
+    let opts:any={
+      title : { text : ' ' },
       xAxis: {
-        categories:this.companyservice.getInvestor(),
+        categories:this.quarter,
         tickPixelInterval: 150,
         title: {
-          text: 'Investor'
+          text: 'Company'
                }
     },    
     yAxis: {
         min: 0,
         title: {
-            text: 'Sharesheld'
+            text: 'Market Value'
         }
     }, 
       series:[{
-          name : 'shares',
-          data : this.companyservice.getSharesHeld()
+          name : 'Market Value',
+          data : this.sumMarketValues
       }]
-  };
-  
-  if (this.chartEl && this.chartEl.nativeElement) {
+
+    };
+    if (this.chartEl && this.chartEl.nativeElement) {
       opts.chart = {
-          type: 'spline',
+          type: 'area',
           renderTo: this.chartEl.nativeElement
       };
       
       this._chart = new Highcharts.Chart(opts);
+      this.check=false;
+   }
   }
-  
-}
-  
-
-ngOnDestroy() {
-    
-}
 
 }

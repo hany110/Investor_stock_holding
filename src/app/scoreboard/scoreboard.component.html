@@ -1,8 +1,21 @@
-<p>
-  scoreboard works!
-</p>
+<div class="page-header section-dark" style="background-image: url('assets/img/score.jpg')">
+  <div class="filter"></div>
+  <div class="content-center">
+      <h2 style="text-align:center"><font color="white">SCOREBOARD</font></h2><br/><br/><br/>
+        <div class="text-center">
+          <h3><font color="white">
+            The individual investors can take help of the leading market investors.
+            </font>
+          </h3>
+          <h3><font color="white">
+              They can keep track of their investments and can identify funds that constantly beat the market.
+              </font>
+            </h3>
+          </div>
+  </div>
+</div>
 <div><h3>List of Filers</h3></div><br/>
-<table class="table-responsive table-striped table-bordered">
+<table class="table-responsive table-striped table-bordered" width="100%">
 <thead>
   <th>Filer Name</th>
   <th>City</th>
@@ -14,15 +27,15 @@
 </thead>
 <tbody>
   <tr *ngFor="let filer of score | paginate: {itemsPerPage: 5, currentPage:page, id: '1'};let i=index">
-    <a (click)="loadInvestor(score.Filer_Name)">
-     <!-- <td ><a (click)="loadCompany(buy.Filer_Name)">{{filer.Filer_Name}}</a></td>
+   
+     <td ><a (click)="loadInvestor(score.Filer_Name)">{{filer.Filer_Name}}</a></td>
       <td>{{filer.City}}</td>
       <td>{{filer.State}}</td>
       <td>{{filer.Market_Value}}</td>
-      <td>{{filer.Shares_Held}}</td>-->
-      <td>111{{i+1}}</td> 
-     <!-- <td>{{filer.Largest_holding}}</td> -->
-    </a>
+      <td>{{filer.Shares_Held}}</td>
+      <td>{{i+1}}</td> 
+      <td>{{filer.Largest_holding}}</td>
+
   </tr>
   
   </tbody>
