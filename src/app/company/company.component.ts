@@ -16,14 +16,15 @@ import { LoaderService } from '../shared/service/load.service';
 export class CompanyComponent implements OnInit, OnDestroy {
   @Input()abc:Filer[]=mock;
   companyID:string;
+  companyDetails:string;
   constructor(private companyservice : FilerService,private conn:ConnectService,private load:LoaderService) {
     this.companyID=load.getCompanyID();
   } 
   private filers=[];
   ngOnInit() {
-    this.companyID='pusheen';
     this.companyservice.getCompanyDetails(this.companyID).subscribe((data) =>
     {
+        this.companyDetails=data;
         console.log(data);
     });
     this.companyservice.getFilerForComp(this.companyID).subscribe((data) => 

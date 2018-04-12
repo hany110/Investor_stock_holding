@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { ChartModule } from 'highcharts';
 import Highcharts = require('highcharts');
-
 
 
 @Component({
@@ -10,14 +8,13 @@ import Highcharts = require('highcharts');
   styleUrls: ['./heat-company.component.scss']
 })
 export class HeatCompanyComponent implements OnInit, AfterViewInit {
-  
+ 
   constructor() {
 }
 
 
   ngOnInit() {
    
-    
   }
 
   ngAfterViewInit() {

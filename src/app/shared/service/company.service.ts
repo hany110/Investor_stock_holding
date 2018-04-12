@@ -15,6 +15,35 @@ export class FilerService{
     {
 
     }
+   //FOR INVESTORS
+
+    getScoreList()
+    {
+        return this.http.get('assets/data/filer.json')          //link for scoreboard
+        .flatMap((data) =>data.json());
+    }
+    
+      getCompanyForFilerQuat(qID:string,invID:string)
+      {
+          console.log(qID + "  "+invID);
+        return this.http.get('http://192.168.43.43:4200/webapi/investors/'+invID+'/'+qID)  //get companies of investor for specific quarter
+        .flatMap((data) => Observable.of(data.json()));
+      }
+      getInvestorDetails(investorID:string) //on clicking a investor ...redirect to investor page
+    {
+        console.log("getInvestorDetails called");
+        return this.http.get('http://192.168.43.43:4200/webapi/companies/'+investorID)      
+        .flatMap((data) => Observable.of(data.json()));
+    }
+    getSectorForInvestor(investorID:string)
+    {
+        console.log("getSectorForInvestor() called");
+        return this.http.get('assets/data/sector.json')      
+        .flatMap((data) => data.json());
+    }
+
+    //FOR COMPANIES
+   
     getHotPicksList()
     {
         return this.http.get('assets/data/filer.json')        //link for hot buys
@@ -25,24 +54,17 @@ export class FilerService{
         return this.http.get('assets/data/filer.json')        //link for hot buys
         .flatMap((data) => data.json());
     }
-    getScoreList()
+    getCompanyDetails(companyID:string) //on clicking a company ...redirect to company page
     {
-        return this.http.get('assets/data/filer.json')          //link for scoreboard
-        .flatMap((data) =>data.json());
+        console.log("getCompanyDetails called");
+        return this.http.get('http://192.168.43.43:4200/webapi/companies/'+companyID)      
+        .flatMap((data) => Observable.of(data.json()));
     }
     getFilerForComp(companyID:string) {
         return this.http.get('assets/data/filer.json')
         .flatMap((data) => data.json());
       }
-    getSharesHeld() {
-        const x: any[]=[];
-        
-        for (const val of this.comp_investor) {
-            x.push(val['Shares_Held'] );
-        }
-        return x;
-    }
-    getPreviousShares(pastshares,currsharescopy) {
+      getPreviousShares(pastshares,currsharescopy) {    //FOR COMPCHART(BAR GRAPH )
         const x: any[]=[];
         
         for (var i=0;i<pastshares.length;i++) {
@@ -55,21 +77,24 @@ export class FilerService{
         }
         return x;
     }
-    getCompanyDetails(companyID:string) //on clicking a company ...redirect to company page
-    {
-        console.log("getCompanyDetails called");
-        return this.http.get('http://192.168.43.43:4200/webapi/companies/'+companyID)      
-        .flatMap((data) => data.json());
-    }
+    
     getInvestor(){
         const x: any[] = [];
-        
+    
         for (const val of this.comp_investor) {
             x.push(val['Filer_Name']);
         }
         return x;
     }
-
+    getSharesHeld() {
+        const x: any[]=[];
+        
+        for (const val of this.comp_investor) {
+            x.push(val['Shares_Held'] );
+        }
+        return x;
+    }
+    
     
     
 }

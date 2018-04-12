@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app.routing';
 
 import { AppComponent } from './app.component';
 import {Ng2PaginationModule} from 'ng2-pagination';
-import {ChartModule} from 'highcharts';
+import { ChartModule } from 'highcharts';
 import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -28,6 +28,8 @@ import { LoaderService } from './shared/service/load.service';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 import { HeatCompanyComponent } from './heat-company/heat-company.component';
 import { InvestorComponent } from './investor/investor.component';
+import { SectpieComponent } from './investor/sectpie/sectpie.component';
+import { MarklineComponent } from './investor/markline/markline.component';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { InvestorComponent } from './investor/investor.component';
     HotpicksComponent,
     ScoreboardComponent,
     HeatCompanyComponent,
-    InvestorComponent
+    InvestorComponent,
+    SectpieComponent,
+    MarklineComponent
   ],
   imports: [
     Ng2PaginationModule,
@@ -56,7 +60,7 @@ import { InvestorComponent } from './investor/investor.component';
     RouterModule,
     AppRoutingModule,
     HomeModule,
-  //  ChartModule
+   //ChartModule.forRoot()
   ],
   providers: [FilerService,HttpModule,ConnectService,LoaderService],
   bootstrap: [AppComponent]
