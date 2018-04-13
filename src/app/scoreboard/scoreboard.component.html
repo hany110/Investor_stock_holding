@@ -21,20 +21,18 @@
   <th>City</th>
   <th>State</th>
   <th>Market Value </th>
-  <th>Shares Held</th>
   <th>Ranking</th>
   <th>Largest Holding</th>
 </thead>
 <tbody>
   <tr *ngFor="let filer of score | paginate: {itemsPerPage: 5, currentPage:page, id: '1'};let i=index">
    
-     <td ><a (click)="loadInvestor(score.Filer_Name)">{{filer.Filer_Name}}</a></td>
-      <td>{{filer.City}}</td>
-      <td>{{filer.State}}</td>
-      <td>{{filer.Market_Value}}</td>
-      <td>{{filer.Shares_Held}}</td>
-      <td>{{i+1}}</td> 
-      <td>{{filer.Largest_holding}}</td>
+     <td ><a (click)="loadInvestor(score.Filer_Name)">1111{{filer.investorName}}</a></td>
+      <td>{{filer.investorCity}}</td>
+      <td>{{filer.investorState}}</td>
+      <td>{{filer.sumMarketValue}}</td>
+      <td>{{filer.ranking}}</td> 
+      <td>{{filer.companyName}}</td>
 
   </tr>
   

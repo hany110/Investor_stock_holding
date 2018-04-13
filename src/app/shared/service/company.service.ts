@@ -98,7 +98,12 @@ export class FilerService{
         .flatMap((data) => data.json());
       }
 
-
+      getHeatMap()      //for heat map
+      {
+          return this.http.get('assets/data/sector.json')
+          //return  this.http.get('http://192.168.43.43:4200/webapi/company/bargraph/'+companyID)
+          .flatMap((data)=>data.json());
+      }
 
 
       getPreviousShares(pastshares,currsharescopy) {    //FOR COMPCHART(BAR GRAPH )
